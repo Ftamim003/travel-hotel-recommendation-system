@@ -1243,6 +1243,35 @@ def admin_refresh_model():
 
 # Initialize persistent admin store and refresh the public data on app startup.
 init_admin_db()
+# Create or promote the deployment admin using environment variables.
+admin_email = os.environ.get('TRAVELBD_ADMIN_EMAIL', '').strip().lower()
+admin_password = os.environ.get('TRAVELBD_ADMIN_PASSWORD', '')
+
+if admin_email and admin_password:
+    with db_connect() as con:
+        existing = con.execute(
+            'SELECT id FROM users WHERE email=?',
+            (admin_email,)
+        ).fetchone()
+
+        if existing:
+            con.execute(
+                "UPDATE users SET role='admin' WHERE email=?",
+                (admin_email,)
+            )
+        else:
+            con.execute(
+                """INSERT INTO users
+                (full_name, email, password_hash, role)
+                VALUES (?, ?, ?, 'admin')""",
+                (
+                    'TravelBD Administrator',
+                    admin_email,
+                    generate_password_hash(admin_password)
+                )
+            )
+
+    print('[TravelBD] Deployment admin is ready.')
 with db_connect() as _c:
     if not _c.execute("SELECT COUNT(*) FROM users WHERE role='admin'").fetchone()[0]:
         print('\n[TravelBD] No admin account exists yet. Create one from this terminal:  python manage.py create-admin\n')
