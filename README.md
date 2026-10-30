@@ -1,6 +1,6 @@
 # TravelBD — Personalized Travel and Hotel Recommendation for Bangladesh
 
-A Flask academic prototype built around the seven datasets supplied for this project. It recommends destinations from interests, travel style, activities, facilities, budget, group size, origin, season and accessibility preference. A destination detail page lists hotel records and transport options available in the supplied data.
+
 
 ## Features
 - **Two-level data model:** a *destination* is a district (64) where a traveller stays; the 78 rows in `destinations_cleaned.csv` are *areas* inside it (e.g. "Lalbagh Fort & Old Dhaka" is an area of the Dhaka destination); individual *attractions* (Lalbagh Fort, Ahsan Manzil …) are the child rows of `itinerary_attractions.csv`. The destination layer is derived at start-up by `build_places()` in `app.py`, so admin edits to areas, hotels or attractions still flow through.
@@ -88,8 +88,7 @@ User and admin passwords are stored as Werkzeug password hashes, not plain text.
 ## Quick start (Windows)
 1. Double-click `run.bat` (first run creates `.venv` and installs requirements; later runs just start the site).
 2. Create an admin once, in a terminal: `.venv\Scripts\activate` then `python manage.py create-admin`. Sign in at /login (same page for everyone).
-3. Site: http://127.0.0.1:5000 · Sign in: http://127.0.0.1:5000/login
-Set `TRAVELBD_DEBUG=1` before `python app.py` only if you want Flask debug mode.
+3.Set `TRAVELBD_DEBUG=1` before `python app.py` only if you want Flask debug mode.
 
 ## Registration with email OTP + mobile number
 - Sign-up asks for name, email, Bangladeshi mobile number (01XXXXXXXXX or +8801XXXXXXXXX) and password, then emails a 6-digit code. The account is created only after the code is verified (expires in 10 minutes, 5 wrong tries, 60-second resend wait). Email and mobile number must each be unique.
