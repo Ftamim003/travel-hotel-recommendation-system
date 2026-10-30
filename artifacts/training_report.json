@@ -1,0 +1,17 @@
+{
+  "destinations": 78,
+  "districts": 64,
+  "hotel_rows_available_to_recommender": 487,
+  "hotel_rows_marked_synthetic": 463,
+  "hotel_rows_marked_official_bpc": 24,
+  "separate_official_bpc_listings": 24,
+  "review_rows": 10000,
+  "unique_review_users": 3000,
+  "transport_rows": 6354,
+  "transport_modes": 9,
+  "tfidf_features": 1742,
+  "itinerary_attraction_rows": 1573,
+  "bantabsa_review_rows": 1242,
+  "bantabsa_locations": 9,
+  "note": "BanTABSA ratings and sentiment are aggregated by location because hotel IDs are anonymized and not matched to named listings. Existing review/trip rows are mostly labelled synthetic placeholders. Destination budgets and transport prices are estimates, not guaranteed current quotes."
+}

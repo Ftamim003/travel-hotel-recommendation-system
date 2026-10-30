@@ -1,0 +1,7 @@
+{% extends 'base.html' %}{% block title %}Menu rights · TravelBD{% endblock %}{% block content %}
+<section class="page-head"><div><p class="eyebrow">Per-user access control</p><h1>Menu rights</h1><p>Choose which TravelBD modules this account can see and use.</p><p class="source-note"><strong>{{ user.full_name }}</strong> · {{ user.email }}</p></div><a class="btn secondary" href="{{ url_for('admin_users') }}">← Back to users</a></section>
+{% with messages=get_flashed_messages(with_categories=true) %}{% for category,message in messages %}<div class="flash {{ category }}">{{ message }}</div>{% endfor %}{% endwith %}
+<form method="post" class="card admin-form"><input type="hidden" name="_csrf_token" value="{{ csrf_value }}"><div class="permission-list">
+{% for key,info in menus.items() %}<label class="permission-row"><span><strong>{{ info[0] }}</strong><small>{{ info[1] }}</small></span><input type="checkbox" name="menu_{{ key }}" {% if rights[key] %}checked{% endif %}><span>Allow access</span></label>{% endfor %}
+</div><p class="help-text">Unchecked modules are hidden from the user's navigation and protected on the server. Administrators always retain full access.</p><div class="form-actions"><button class="btn primary" type="submit">Save menu rights</button><a class="btn secondary" href="{{ url_for('admin_users') }}">Cancel</a></div></form>
+{% endblock %}

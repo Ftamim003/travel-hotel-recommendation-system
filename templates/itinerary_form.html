@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Plan your trip · TravelBD{% endblock %}
+{% block content %}
+<section class="results-top">
+  <a class="back-link" href="{{ url_for('destination_detail', destination_id=destination.destination_id) if destination else url_for('index') }}">← Back to destination</a>
+  <div class="eyebrow">DAY-WISE TRIP PLANNER</div>
+  {% if destination %}<h1>Plan your <em>{{ destination.destination_name }}</em> trip</h1><p>Build a suggested daily schedule from the available attraction datasets and your preferences.</p>{% else %}<h1>Destination not found</h1>{% endif %}
+</section>
+{% if destination %}
+{% if error %}<div class="notice">{{ error }}</div>{% endif %}
+<section class="search-section">
+  <form class="preference-form" method="post">
+    <input type="hidden" name="_csrf_token" value="{{ csrf_value }}"><input type="hidden" name="stay_budget" value="{{ stay_budget|int }}"><input type="hidden" name="facilities" value="{{ facilities }}">
+    <div class="form-grid">
+      <label class="field"><span>Trip duration (days)</span><input type="number" name="days" min="1" max="14" value="{{ days }}" required></label>
+      <label class="field"><span>Daily attraction budget (BDT/person)</span><input type="number" name="daily_budget" min="100" step="100" value="{{ budget|int }}" required><small>For attraction expenses only; excludes hotel, meals and local transport.</small></label>
+      <label class="field"><span>Group size</span><input type="number" name="group_size" min="1" max="30" value="{{ group_size }}" required></label>
+      <label class="field"><span>Travel style</span><select name="travel_style">{% for o in ['Any style','Adventure','Nature','Cultural','Family','Relaxation','Spiritual','Photography','Food'] %}<option {{ 'selected' if o==travel_style }}>{{ o }}</option>{% endfor %}</select></label>
+      <label class="field"><span>Planning pace</span><select name="pace">{% for o in ['Balanced','Relaxed','Packed'] %}<option {{ 'selected' if o==pace }}>{{ o }}</option>{% endfor %}</select></label>
+      <label class="field"><span>Interests</span><input type="text" name="interests" value="{{ interests }}" placeholder="e.g. beach, nature, history"></label>
+    </div>
+    <button class="btn btn-primary submit-btn" type="submit">Generate day-wise itinerary ↗</button>
+  </form>
+</section>
+<section class="search-section">
+  <h2>Available attraction data</h2>
+  <p>The planner combines destination highlights, geolocated tourism records and district-level tourist suggestions. Location and cost estimates are labelled where they are approximate.</p>
+</section>
+{% endif %}
+{% endblock %}

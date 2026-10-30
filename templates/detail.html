@@ -1,0 +1,316 @@
+<style>
+/* Hotel card layout */
+
+/* Hotel card */
+.hotel-card {
+    background: #FFFFFF;
+    border: 1px solid #E0E6DF;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 5px 18px rgba(24, 35, 31, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.hotel-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(24, 35, 31, 0.13);
+    border-color: #1C684D;
+}
+
+/* Card header */
+.hotel-card-header {
+    min-height: 115px;
+    padding: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    background: linear-gradient(135deg, #DCEFE5, #F7F8F3);
+}
+
+/* Status and rating badges */
+.hotel-status,
+.hotel-rating {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 12px;
+    border-radius: 30px;
+    background: #1C684D;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.hotel-rating {
+    background: #FFFFFF;
+    color: #1C684D;
+    border: 1px solid #DCEFE5;
+}
+
+/* Card body */
+.hotel-card-body {
+    padding: 22px;
+}
+
+.hotel-card-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.hotel-card-title h3 {
+    margin: 0;
+    color: #18231F;
+    font-size: 21px;
+    line-height: 1.4;
+}
+
+/* Hotel location */
+.hotel-location {
+    color: #66736C;
+    font-size: 13px;
+    margin: 9px 0 18px;
+}
+
+/* Price section */
+.hotel-price {
+    padding: 15px 18px;
+    margin-bottom: 18px;
+    border-radius: 12px;
+    background: #DCEFE5;
+    color: #1C684D;
+}
+
+.hotel-price strong {
+    font-size: 25px;
+    font-weight: 750;
+}
+
+.hotel-price span {
+    color: #66736C;
+    font-size: 13px;
+}
+
+/* Hotel details */
+.hotel-detail {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin: 17px 0;
+}
+
+.hotel-detail-icon {
+    font-size: 20px;
+    color: #1C684D;
+    min-width: 25px;
+}
+
+.hotel-detail-content {
+    min-width: 0;
+}
+
+.hotel-detail-content strong {
+    display: block;
+    color: #1C684D;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.hotel-detail-content p {
+    margin: 0;
+    color: #66736C;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* Prominent hotel link */
+.hotel-link-wrap {
+    padding: 8px;
+    margin: 20px -4px 15px;
+    border-radius: 14px;
+    background: #DCEFE5;
+}
+
+.hotel-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 16px 18px;
+    border-radius: 11px;
+    background: #1C684D;
+    color: #FFFFFF !important;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none !important;
+    transition: background 0.2s ease;
+}
+
+.hotel-link:hover {
+    background: #15543E;
+}
+
+.hotel-link span {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.hotel-link .external-icon {
+    font-size: 21px;
+}
+
+/* Card footer */
+.hotel-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-top: 15px;
+    border-top: 1px solid #E0E6DF;
+    color: #66736C;
+    font-size: 12px;
+}
+
+.hotel-card-footer strong {
+    color: #18231F;
+}
+
+/* Optional hotel image */
+.hotel-image {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    display: block;
+}
+
+/* Mobile responsive */
+@media (max-width: 650px) {
+    .hotel-card-body {
+        padding: 18px;
+    }
+
+    .hotel-card-title h3 {
+        font-size: 19px;
+    }
+
+    .hotel-card-header {
+        min-height: 90px;
+    }
+
+    .hotel-link {
+        padding: 14px;
+        font-size: 14px;
+    }
+}
+
+</style>
+
+{% extends 'base.html' %}{% block title %}Destination details{% endblock %}{% block content %}<section class="results-top"><a class="back-link" href="{{ url_for('index') }}">← Back to explore</a>{% if destination %}<div class="eyebrow">{{ destination.district }} · {{ destination.division }} · {{ destination.destination_type }}</div><h1>{{ destination.destination_name }}</h1><p><strong>Areas covered:</strong> {{ destination.areas }}</p><p><strong>Attractions:</strong> {{ destination.attractions }}</p><div class="summary-chips"><span>৳{{ '{:,.0f}'.format(destination.estimated_daily_budget_bdt|float) }}/person/day</span><span>Best season: {{ destination.best_season_list[0] if destination.best_season_list else destination.best_season }}</span><span>{{ destination.accessibility_level }} access</span><span>{{ destination.accessibility_modes }}</span></div><p>{{ destination.accessibility_notes }}</p>{% else %}<h1>Destination not found</h1>{% endif %}</section>{% if destination %}
+<section class="search-section itinerary-callout"><div><h2>Plan a day-wise itinerary</h2><p>Choose trip length, travel style and interests to generate a suggested morning, afternoon and evening schedule.</p></div><a class="btn btn-primary" href="{{ url_for('destination_itinerary', destination_id=destination.destination_id, auto=1, budget=budget, stay_budget=budget, group_size=group_size, facilities=facilities, days=days, interests=interests, travel_style=travel_style) }}">Plan my trip ↗</a></section><section class="search-section"><h2>Recommended hotels</h2><p>Sorted by budget fit, rating, facility match and supplied review count.</p>{% if hotels %}<div class="destination-grid">{% for item in hotels %}{% set h=item.hotel %}
+<article class="hotel-card">
+
+    {% if h.image_url %}
+    <img class="hotel-image"
+         src="{{ h.image_url }}"
+         alt="{{ h.hotel_name }}"
+         loading="lazy">
+    {% endif %}
+
+    <div class="hotel-card-header">
+
+        <span class="hotel-status">
+            {% if item.is_real %}
+                Real listing · {{ item.source_type }}
+            {% else %}
+                Demo record · not a real hotel
+            {% endif %}
+
+            {% if h.star_class %}
+                · {{ h.star_class }} star
+            {% endif %}
+        </span>
+
+        <span class="hotel-rating">
+            {% if item.rating %}
+                ★ {{ '%.1f'|format(item.rating) }}
+            {% else %}
+                No rating
+            {% endif %}
+        </span>
+
+    </div>
+
+    <div class="hotel-card-body">
+
+        <div class="hotel-card-title">
+            <h3>{{ h.hotel_name }}</h3>
+        </div>
+
+        <p class="hotel-location">
+            <span>📍</span>
+            {{ h.address or h.district }}
+        </p>
+
+        <div class="hotel-price">
+            {% if item.price %}
+                <strong>৳{{ '{:,.0f}'.format(item.price) }}</strong>
+                <span>/night</span>
+            {% else %}
+                <strong>Price unavailable</strong>
+            {% endif %}
+        </div>
+
+        <div class="hotel-detail">
+            <span class="hotel-detail-icon">🛏</span>
+            <div class="hotel-detail-content">
+                <strong>Room types</strong>
+                <p>{{ h.room_types or 'Not listed' }}</p>
+            </div>
+        </div>
+
+        <div class="hotel-detail">
+            <span class="hotel-detail-icon">🏨</span>
+            <div class="hotel-detail-content">
+                <strong>Facilities</strong>
+                <p>{{ h.facilities or 'Not listed' }}</p>
+            </div>
+        </div>
+
+        {% if h.booking_link %}
+        <div class="hotel-link-wrap">
+            <a class="hotel-link"
+               href="{{ h.booking_link }}"
+               target="_blank"
+               rel="noopener noreferrer">
+
+                <span>
+                    <span class="external-icon">↗</span>
+                    View hotel listing
+                </span>
+
+                <span>›</span>
+            </a>
+        </div>
+        {% endif %}
+
+        <div class="hotel-card-footer">
+
+            {% if h.contact_phone %}
+            <span>☎ {{ h.contact_phone }}</span>
+            {% endif %}
+
+            <span>
+                Source: <strong>{{ h.data_source }}</strong>
+            </span>
+
+        </div>
+
+    </div>
+</article>
+{% endfor %}</div>{% else %}<p>No hotel rows directly matched this destination ID in the supplied hotel file.</p>{% endif %}<div class="notice">Real listings are shown first. Rows marked “Demo record” are synthetic placeholders used only to fill gaps; they are not real hotels or prices. Official BPC listings may not have room rates captured.</div></section>
+{% if bantabsa %}<section class="search-section"><h2>Hotel review context for {{ bantabsa.location_city }}</h2><div class="notice"><strong>{{ '%.1f'|format(bantabsa.mean_rating) }}/5 average rating</strong> across {{ bantabsa.review_count }} Bengali reviews in BanTABSA. Aspect sentiment triplets: {{ bantabsa.positive_triplets }} positive, {{ bantabsa.neutral_triplets }} neutral and {{ bantabsa.negative_triplets }} negative. This is a location-level aggregate; hotel IDs are anonymized and are not linked to the named hotels above.</div></section>{% endif %}
+<section class="search-section"><h2>Transport options</h2><p>Options for {{ origin }} to {{ destination.destination_name }}{% if season != 'Any season' %}, season: {{ season }}{% endif %}.</p>{% if transport %}<div class="table-wrap"><table><thead><tr><th>Origin</th><th>Mode</th><th>Fare/person (one way)</th><th>Travel time</th><th>Distance</th><th>Season</th></tr></thead><tbody>{% for t in transport %}<tr><td>{{ t.origin }}</td><td>{{ t.transport_mode }}</td><td>৳{{ '{:,.0f}'.format(t.fare_bdt|float) }}</td><td>{{ t.travel_time_hrs }} hrs</td><td>{{ t.distance_km }} km</td><td>{{ t.travel_season }}</td></tr>{% endfor %}</tbody></table></div>{% else %}<p>No transport options matched that origin; try “Anywhere” on the search page.</p>{% endif %}<div class="notice">Fares and travel times are dataset estimates and may change. Confirm with the transport provider before travelling.</div></section>{% endif %}{% endblock %}

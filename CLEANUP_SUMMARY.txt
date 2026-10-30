@@ -1,0 +1,28 @@
+TravelBD – Final Clean Project Package
+
+This package keeps the files needed to run the Flask application, authentication,
+admin CRUD, destination/hotel recommendations, transport display, day-wise
+itinerary planner, and the current model/training workflow.
+
+Removed:
+- Bundled .venv and Python cache files (create a fresh environment on your PC).
+- Duplicate/legacy tourism spreadsheets and merged dataset.
+- Unused scratch/import/template/cost-update datasets and optional experiment outputs.
+- Optional standalone scripts for cost updates, bulk hotel import, and extra experiments.
+- Private email_config.json and secret_key.txt. The app creates a new secret key
+  automatically. Email OTP works in demo mode (OTP printed in terminal) until
+  you configure your own instance/email_config.json from the example file.
+
+Kept:
+- Original training inputs: 1_destinations.csv, 2_hotels.csv,
+  2b_real_bpc_hotels.csv, 3_users_reviews.csv, 4_transport.csv, BanTABSA.csv.
+- Processed/runtime datasets and itinerary builder inputs.
+- Current trained model artifacts and hybrid weights.
+- Flask app, templates, static assets, ML hybrid module, requirements,
+  README/docs, and the existing admin database.
+
+Important:
+- Run from the project folder using a fresh Python 3.11 64-bit virtual environment.
+- Run `python train_model.py` before `python app.py` if processed data is missing
+  or you want to rebuild the model and prepared datasets.
+- Existing admin database is retained so existing local admin/user records remain.

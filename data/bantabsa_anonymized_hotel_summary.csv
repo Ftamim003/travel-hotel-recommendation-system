@@ -1,0 +1,32 @@
+﻿hotel_id,location_city,review_count,mean_rating,source_type
+hid00001,Dhaka,28,3.9285714285714284,BanTABSA anonymized hotel ID; do not join to named hotels without a verified mapping
+hid00002,Cox's Bazar,24,3.5833333333333335,BanTABSA anonymized hotel ID; do not join to named hotels without a verified mapping
+hid00003,Cox's Bazar,46,3.4565217391304346,BanTABSA anonymized hotel ID; do not join to named hotels without a verified mapping
+hid00004,Cox's Bazar,47,4.085106382978723,BanTABSA anonymized hotel ID; do not join to named hotels without a verified mapping
+hid00005,Sylhet,27,3.888888888888889,BanTABSA anonymized hotel ID; do not join to named hotels without a verified mapping
+hid00006,Sylhet,33,3.484848484848485,BanTABSA anonymized hotel ID; do not join to named hotels without a verified mapping
+hid00007,Dhaka,31,4.193548387096774,BanTABSA anonymized hotel ID; do not join to named hotels without a verified mapping
+hid00008,Dhaka,14,4.214285714285714,BanTABSA anonymized hotel ID; do not join to named hotels without a verified mapping
+hid00009,Cox's Bazar,69,3.9855072463768115,BanTABSA anonymized hotel ID; do not join to named hotels without a verified mapping
+hid00010,Moulvibazar,20,3.5,BanTABSA anonymized hotel ID; do not join to named hotels without a verified mapping
+hid00011,Sylhet,49,3.673469387755102,BanTABSA anonymized hotel ID; do not join to named hotels without a verified mapping
+hid00012,Bandarban,67,3.8656716417910446,BanTABSA anonymized hotel ID; do not join to named hotels without a verified mapping
+hid00013,Rajshahi,31,3.4516129032258065,BanTABSA anonymized hotel ID; do not join to named hotels without a verified mapping
+hid00014,Bandarban,44,3.9545454545454546,BanTABSA anonymized hotel ID; do not join to named hotels without a verified mapping
+hid00015,Rajshahi,18,2.9444444444444446,BanTABSA anonymized hotel ID; do not join to named hotels without a verified mapping
+hid00016,Cox's Bazar,45,4.155555555555556,BanTABSA anonymized hotel ID; do not join to named hotels without a verified mapping
+hid00017,Cox's Bazar,84,3.7976190476190474,BanTABSA anonymized hotel ID; do not join to named hotels without a verified mapping
+hid00018,Dhaka,45,4.533333333333333,BanTABSA anonymized hotel ID; do not join to named hotels without a verified mapping
+hid00019,Dhaka,95,4.442105263157894,BanTABSA anonymized hotel ID; do not join to named hotels without a verified mapping
+hid00020,Chattogram,49,4.346938775510204,BanTABSA anonymized hotel ID; do not join to named hotels without a verified mapping
+hid00021,Chattogram,21,3.857142857142857,BanTABSA anonymized hotel ID; do not join to named hotels without a verified mapping
+hid00022,Kuakata,26,3.269230769230769,BanTABSA anonymized hotel ID; do not join to named hotels without a verified mapping
+hid00023,Kuakata,39,3.641025641025641,BanTABSA anonymized hotel ID; do not join to named hotels without a verified mapping
+hid00024,Kuakata,20,4.4,BanTABSA anonymized hotel ID; do not join to named hotels without a verified mapping
+hid00025,Kuakata,36,3.7777777777777777,BanTABSA anonymized hotel ID; do not join to named hotels without a verified mapping
+hid00026,Rangamati,21,4.714285714285714,BanTABSA anonymized hotel ID; do not join to named hotels without a verified mapping
+hid00027,Rangamati,26,4.038461538461538,BanTABSA anonymized hotel ID; do not join to named hotels without a verified mapping
+hid00028,Rangamati,34,4.352941176470588,BanTABSA anonymized hotel ID; do not join to named hotels without a verified mapping
+hid00029,Rajshahi,45,3.2222222222222223,BanTABSA anonymized hotel ID; do not join to named hotels without a verified mapping
+hid00030,Moulvibazar,28,4.107142857142857,BanTABSA anonymized hotel ID; do not join to named hotels without a verified mapping
+hid00031,Moulvibazar,80,4.35,BanTABSA anonymized hotel ID; do not join to named hotels without a verified mapping

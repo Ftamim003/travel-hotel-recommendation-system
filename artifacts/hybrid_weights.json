@@ -1,0 +1,16 @@
+{
+ "weights": {
+  "cbf": 0.2,
+  "cf": 0.05,
+  "popularity": 0.2,
+  "budget": 0.55
+ },
+ "tuned": true,
+ "source": "ml/tune_hybrid.py: grid search (step .05) on V + S; among weights within one SE of the best, the one that keeps top-5 within a tight budget, then nearest equal weights",
+ "tuned_on": "2026-10-29",
+ "cf_data": "reviews_cleaned.csv (SYNTHETIC placeholder trips; ratings column is empty)",
+ "cf_data_is_real": false,
+ "n_validation_cases": 1200,
+ "n_scenarios": 25,
+ "note": "CF weight is further limited at run time while CF data is synthetic (ml/hybrid.py: SYNTHETIC_CF_CAP)."
+}

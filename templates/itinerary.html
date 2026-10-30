@@ -1,0 +1,561 @@
+<style>
+
+
+/* =====================================
+   ITINERARY SECTION
+===================================== */
+
+.itinerary-days {
+    margin: 42px 0;
+}
+
+.itinerary-section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    gap: 20px;
+}
+
+.itinerary-section-heading h2 {
+    color: var(--ink);
+    font-size: 27px;
+    margin: 7px 0;
+}
+
+.itinerary-section-heading p {
+    color: var(--muted);
+    margin: 0;
+}
+
+.total-days {
+    background: var(--green2);
+    color: var(--green);
+    width: 75px;
+    height: 75px;
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.total-days strong {
+    font-size: 25px;
+}
+
+.total-days span {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* =====================================
+   INDIVIDUAL DAY CARD
+===================================== */
+
+.itinerary-day {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    margin-bottom: 28px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(24, 35, 31, 0.05);
+}
+
+.itinerary-day-head {
+    background: linear-gradient(120deg, var(--green2), var(--cream));
+    padding: 25px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    border-bottom: 1px solid var(--line);
+}
+
+.day-title-group {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+}
+
+.day-number {
+    width: 62px;
+    height: 62px;
+    background: var(--green);
+    color: white;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 23px;
+    font-weight: 800;
+}
+
+.day-title-group h2 {
+    margin: 4px 0;
+    color: var(--ink);
+    font-size: 24px;
+}
+
+.day-subtitle {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.day-summary {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.day-cost,
+.day-hours {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.day-summary span {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.day-summary strong {
+    color: var(--green);
+    font-size: 21px;
+}
+
+.day-summary small {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+/* =====================================
+   TIMELINE
+===================================== */
+
+.itinerary-timeline {
+    padding: 28px;
+}
+
+.itinerary-stop {
+    display: grid;
+    grid-template-columns: 90px 24px minmax(0, 1fr);
+    gap: 15px;
+    position: relative;
+}
+
+.itinerary-stop:not(:last-child) {
+    padding-bottom: 30px;
+}
+
+.timeline-time {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-top: 5px;
+    gap: 5px;
+}
+
+.timeline-time strong {
+    color: var(--green);
+    font-size: 15px;
+}
+
+.timeline-time span {
+    color: var(--muted);
+    font-size: 12px;
+    text-align: right;
+}
+
+/* Timeline vertical line */
+
+.timeline-marker {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.timeline-marker::after {
+    content: "";
+    position: absolute;
+    top: 14px;
+    bottom: -30px;
+    width: 2px;
+    background: var(--line);
+}
+
+.itinerary-stop:last-child .timeline-marker::after {
+    display: none;
+}
+
+.timeline-dot {
+    width: 13px;
+    height: 13px;
+    background: var(--green);
+    border: 3px solid var(--green2);
+    border-radius: 50%;
+    z-index: 1;
+    margin-top: 4px;
+}
+
+/* =====================================
+   ACTIVITY DETAILS
+===================================== */
+
+.timeline-content {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 13px;
+    padding: 18px 20px;
+    transition: 0.2s ease;
+}
+
+.timeline-content:hover {
+    border-color: var(--green);
+    box-shadow: 0 4px 14px rgba(24, 35, 31, 0.06);
+}
+
+.stop-topline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.stop-category {
+    background: var(--green2);
+    color: var(--green);
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.stop-duration {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.timeline-content h3 {
+    color: var(--ink);
+    font-size: 19px;
+    margin: 13px 0;
+}
+
+.stop-expense {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 13px;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    font-size: 12px;
+}
+
+.stop-expense span {
+    color: var(--muted);
+}
+
+.stop-expense strong {
+    color: var(--green);
+    white-space: nowrap;
+}
+
+.stop-travel {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 12px;
+    line-height: 1.6;
+}
+
+.stop-travel span {
+    color: var(--green);
+    font-weight: 800;
+    margin-right: 5px;
+}
+
+.stop-travel small {
+    display: block;
+    margin-left: 18px;
+}
+
+.stop-extra {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 13px;
+}
+
+.stop-extra span {
+    color: var(--muted);
+    font-size: 11px;
+    background: var(--white);
+    border: 1px solid var(--line);
+    padding: 5px 9px;
+    border-radius: 6px;
+}
+
+.source-note {
+    color: var(--muted);
+    font-size: 11px;
+    margin: 9px 0 0;
+}
+
+/* =====================================
+   DAY FOOTER
+===================================== */
+
+.itinerary-day-footer {
+    background: var(--cream);
+    border-top: 1px solid var(--line);
+    padding: 16px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.itinerary-day-footer span {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.itinerary-day-footer strong {
+    color: var(--green);
+    font-size: 20px;
+}
+
+/* Planning notice */
+
+.itinerary-notice {
+    margin-top: 20px;
+}
+
+/* =====================================
+   RESPONSIVE DESIGN
+===================================== */
+
+@media (max-width: 650px) {
+
+    .itinerary-section-heading h2 {
+        font-size: 21px;
+    }
+
+    .itinerary-day-head {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+    }
+
+    .day-summary {
+        width: 100%;
+        justify-content: space-between;
+        padding-top: 15px;
+        border-top: 1px solid var(--line);
+    }
+
+    .itinerary-timeline {
+        padding: 20px 12px;
+    }
+
+    .itinerary-stop {
+        grid-template-columns: 62px 17px minmax(0, 1fr);
+        gap: 8px;
+    }
+
+    .timeline-time strong {
+        font-size: 12px;
+    }
+
+    .timeline-time span {
+        font-size: 10px;
+    }
+
+    .timeline-content {
+        padding: 13px;
+    }
+
+    .timeline-content h3 {
+        font-size: 16px;
+    }
+
+    .stop-expense {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .itinerary-day-footer {
+        padding: 15px;
+    }
+
+    .itinerary-day-footer span {
+        font-size: 11px;
+    }
+}
+
+
+
+</style>
+
+{% extends 'base.html' %}
+{% block title %}Your itinerary · TravelBD{% endblock %}
+{% block content %}
+<section class="results-top">
+  <a class="back-link" href="{{ url_for('destination_itinerary', destination_id=destination.destination_id, budget=budget, group_size=group_size) }}">← Edit itinerary preferences</a>
+  <div class="eyebrow">YOUR SUGGESTED SCHEDULE</div>
+  <h1>{{ destination.destination_name }} <em>itinerary</em></h1>
+  <p>{{ days }}-day trip · {{ travel_style }} · {{ pace }} pace{% if interests %} · Interests: {{ interests }}{% endif %}</p>
+  <div class="summary-chips"><span>{{ plan|length }} day(s) planned</span><span>৳{{ '{:,.0f}'.format(budget|float) }}/person/day attraction budget</span><span>{{ group_size }} traveller(s)</span></div>
+</section>
+{% if stay %}<section class="search-section"><h2>Where to stay in {{ destination.destination_name }}</h2><div class="destination-grid">{% for item in stay %}{% set h=item.hotel %}<article class="place-card"><div class="place-info"><div class="eyebrow">{% if item.is_real %}Real listing · {{ item.source_type }}{% else %}Demo record · not a real hotel{% endif %}{% if h.star_class %} · {{ h.star_class }} star{% endif %}</div><h3>{{ h.hotel_name }}</h3><p>{{ h.address or h.district }}</p><div class="place-meta"><span>{% if item.price %}৳{{ '{:,.0f}'.format(item.price) }}/night{% else %}Price not supplied{% endif %}</span><span>{% if item.rating %}★ {{ '%.1f'|format(item.rating) }}{% else %}No rating{% endif %}</span></div></div></article>{% endfor %}</div>{% if stay|rejectattr('is_real')|list %}<div class="notice">“Demo record” rows are synthetic placeholders, not real hotels or prices. Real listings are always shown first.</div>{% endif %}</section>{% endif %}
+{% if plan %}
+
+{% if plan %}
+<section class="itinerary-days">
+
+  <div class="itinerary-section-heading">
+    <div>
+      <div class="eyebrow">YOUR TRAVEL SCHEDULE</div>
+      <h2>Explore your trip day by day</h2>
+      <p>Follow your suggested activities and make the most of your journey.</p>
+    </div>
+    <div class="total-days">
+      <strong>{{ plan|length }}</strong>
+      <span>Days</span>
+    </div>
+  </div>
+
+  {% for day in plan %}
+  <article class="itinerary-day">
+
+    <!-- Day Header -->
+    <div class="itinerary-day-head">
+      <div class="day-title-group">
+        <div class="day-number">0{{ day.day }}</div>
+        <div>
+          <div class="eyebrow">YOUR JOURNEY</div>
+          <h2>Day {{ day.day }}</h2>
+          <span class="day-subtitle">
+            {{ day['items']|length }} activities planned
+          </span>
+        </div>
+      </div>
+
+      <div class="day-summary">
+        <div class="day-cost">
+          <span>Estimated cost</span>
+          <strong>৳{{ '{:,.0f}'.format(day.estimated_cost) }}</strong>
+          <small>Per person</small>
+        </div>
+        <div class="day-hours">
+          <span>Visit duration</span>
+          <strong>{{ '%.1f'|format(day.estimated_hours) }} hrs</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Activities Timeline -->
+    <div class="itinerary-timeline">
+
+      {% for item in day['items'] %}
+      {% set p = item.place %}
+
+      <div class="itinerary-stop">
+
+        <div class="timeline-time">
+          <strong>{{ item.start }}</strong>
+          <span>{{ item.slot }}</span>
+        </div>
+
+        <div class="timeline-marker">
+          <span class="timeline-dot"></span>
+        </div>
+
+        <div class="timeline-content">
+
+          <div class="stop-topline">
+            <span class="stop-category">
+              {{ p.category or 'Tourist attraction' }}
+            </span>
+            <span class="stop-duration">
+              <icon-placeholder></icon-placeholder>
+              {{ '%.1f'|format(item.duration) }} hours
+            </span>
+          </div>
+
+          <h3>{{ p.place_name }}</h3>
+
+          <div class="stop-expense">
+            <span>Estimated attraction expense</span>
+            <strong>৳{{ '{:,.0f}'.format(item.cost) }}/person</strong>
+          </div>
+
+          {% if item.travel_km %}
+          <div class="stop-travel">
+            <span>↗</span>
+            Approximately {{ item.travel_km }} km / {{ item.travel_min }} min from previous stop
+            <small>Rough straight-line estimate, not a road route.</small>
+          </div>
+          {% endif %}
+
+          <div class="stop-extra">
+            <span>Source: {{ p.source_type }}</span>
+            {% if p.source_location %}
+              <span>{{ p.source_location }}</span>
+            {% endif %}
+            {% if p.rating and p.rating|float > 0 %}
+              <span>★ {{ '%.1f'|format(p.rating|float) }}/5</span>
+            {% endif %}
+          </div>
+
+          {% if p.location_match_method %}
+          <p class="source-note">
+            Location note: {{ p.location_match_method }}
+          </p>
+          {% endif %}
+
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+
+    <!-- Day Footer -->
+    <div class="itinerary-day-footer">
+      <span>Daily estimated total for {{ group_size }} traveller(s)</span>
+      <strong>
+        ৳{{ '{:,.0f}'.format(day.estimated_cost * group_size) }}
+      </strong>
+    </div>
+
+  </article>
+  {% endfor %}
+
+</section>
+
+<div class="notice itinerary-notice">
+  <strong>Planning note:</strong> {{ note }}
+  These are suggested visit slots, not confirmed bookings or verified opening hours.
+  Allow additional time for traffic, meals, rest and weather.
+</div>
+
+{% else %}
+<div class="notice">
+  No itinerary could be generated from the available attraction records.
+  Try another destination or run <code>python train_model.py</code>
+  to rebuild the processed datasets.
+</div>
+{% endif %}
+
+<div class="notice"><strong>Planning note:</strong> {{ note }} These are suggested visit slots, not confirmed bookings or verified opening hours. Allow additional time for traffic, meals, rest and weather.</div>
+{% else %}
+<div class="notice">No itinerary could be generated from the available attraction records. Try another destination or run <code>python train_model.py</code> to rebuild the processed datasets.</div>
+{% endif %}
+<div class="card-bottom"><a class="btn btn-dark" href="{{ url_for('destination_detail', destination_id=destination.destination_id, budget=stay_budget or budget, group_size=group_size) }}">All hotels & transport ↗</a><a class="btn btn-primary" href="{{ url_for('destination_itinerary', destination_id=destination.destination_id, budget=budget, group_size=group_size) }}">Plan again ↗</a></div>
+{% endblock %}

@@ -1,0 +1,242 @@
+
+{% extends 'base.html' %}
+
+{% block title %}TravelBD — Personalized Bangladesh Travel{% endblock %}
+
+{% block content %}
+
+<style>
+/* Two-column form layout */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px 22px;
+}
+
+/* Form field layout */
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+/* Input and select sizing */
+.field input:not([type="checkbox"]),
+.field select {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Full-width fields */
+.form-grid .full {
+    grid-column: 1 / -1;
+}
+
+/* Mobile responsive layout */
+@media (max-width: 650px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .form-grid .full {
+        grid-column: auto;
+    }
+}
+</style>
+
+<section class="hero">
+    <div class="hero-copy">
+        <div class="eyebrow">PERSONALIZED BANGLADESH TRAVEL</div>
+        <h1>Your next trip,<br><em>matched to you.</em></h1>
+        <p>Discover destinations, compare accommodation options and explore transport fares using the datasets you supplied.</p>
+
+        <div class="hero-stats">
+            <div><strong>{{ total }}</strong><span>destinations (districts)</span></div>
+            <div><strong>{{ area_total }}</strong><span>areas &amp; attraction groups</span></div>
+            <div><strong>{{ hotel_total }}</strong><span>hotel records</span></div>
+            <div><strong>{{ transport_total }}</strong><span>transport records</span></div>
+        </div>
+    </div>
+
+    <div class="hero-art">
+        <div class="hero-map">বাংলাদেশ<br><span>Explore beyond the usual</span></div>
+    </div>
+</section>
+
+{% if user_logged_in and menu_allowed.get('explore', true) %}
+
+<section class="search-section">
+    <div class="section-heading">
+        <div>
+            <div class="eyebrow">BUILD YOUR TRAVEL PROFILE</div>
+            <h2>Where would you like to go?</h2>
+            <p>
+                Enter your daily budget per person. Estimated destination cost is calculated for your trip duration and group size.
+                {% if not user_logged_in %}
+                You can browse destinations publicly; sign in or create a free account to run personalized recommendations and save your searches.
+                {% endif %}
+            </p>
+        </div>
+    </div>
+
+    <form class="preference-form" method="post">
+        <input type="hidden" name="_csrf_token" value="{{ csrf_value }}">
+
+        <div class="form-grid">
+
+            <label class="field">
+                <span>Daily budget per person (৳)</span>
+                <input type="number" min="500" step="500" name="budget_per_person_day" placeholder="" required>
+            </label>
+
+            <label class="field">
+                <span>Trip duration (days)</span>
+                <input type="number" min="1" max="30" name="days" placeholder="" required>
+            </label>
+
+            <label class="field">
+                <span>Group size</span>
+                <input type="number" min="1" max="30" name="group_size" placeholder="" required>
+            </label>
+
+            <label class="field">
+                <span>Starting district / origin</span>
+                <select name="origin">
+                    <option>Anywhere</option>
+                    {% for d in districts %}
+                    <option value="{{ d }}">{{ d }}</option>
+                    {% endfor %}
+                </select>
+            </label>
+
+            <label class="field">
+                <span>Travel style</span>
+                <select name="travel_style">
+                    <option>Any style</option>
+                    <option>Family</option>
+                    <option>Couple</option>
+                    <option>Adventure</option>
+                    <option>Nature</option>
+                    <option>Cultural</option>
+                    <option>Solo</option>
+                    <option>Friends</option>
+                </select>
+            </label>
+
+            <label class="field">
+                <span>Preferred season</span>
+                <select name="season">
+                    <option>Any season</option>
+                    <option>Peak (Nov-Feb)</option>
+                    <option>Shoulder (Mar-Apr, Oct)</option>
+                    <option>Monsoon (May-Sep)</option>
+                </select>
+            </label>
+
+            {% if error %}
+            <div class="notice field full" role="alert">{{ error }}</div>
+            {% endif %}
+
+            <div class="field full">
+                <span>What are you into? (pick one or more)</span>
+                <div class="chip-group">
+                    {% for c in interest_choices %}
+                    <label class="chip">
+                        <input type="checkbox" name="interest_tags" value="{{ c }}" {% if c in selected %}checked{% endif %}>
+                        <span>{{ c }}</span>
+                    </label>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <label class="field full">
+                <span>Other interests (optional)</span>
+                <input name="interests" value="{{ profile_interests }}" placeholder="sunrise, birdwatching, local food">
+            </label>
+
+            <label class="field full">
+                <span>Preferred activities</span>
+                <input name="activities" placeholder="hiking, photography, boat rides, museum visits">
+            </label>
+
+            <label class="field full">
+                <span>Hotel facilities (optional)</span>
+                <input name="facilities" placeholder="Free WiFi; Air Conditioning; Breakfast Included">
+            </label>
+
+            <label class="field">
+                <span>Accessibility preference</span>
+                <select name="accessibility">
+                    <option>Any</option>
+                    <option>Easy</option>
+                    <option>Moderate</option>
+                    <option>Challenging</option>
+                </select>
+            </label>
+
+        </div>
+
+        <button class="btn btn-primary submit-btn" type="submit">
+            Recommend my trip ↗
+        </button>
+    </form>
+</section>
+
+{% elif not user_logged_in %}
+
+<section class="search-section">
+    <div class="section-heading">
+        <div>
+            <div class="eyebrow">START PLANNING</div>
+            <h2>Plan a trip that fits you</h2>
+            <p>Create a free TravelBD account to get personalized destination recommendations, compare trip costs, generate day-wise itineraries, and save your searches and travel plans to revisit later.</p>
+            <p>Visitors can browse destination previews and read the Model &amp; Data page without signing in.</p>
+
+            <div class="form-actions">
+                <a class="btn primary" href="{{ url_for('user_register') }}">Create free account</a>
+                <a class="btn secondary" href="{{ url_for('user_login') }}">Sign in</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% else %}
+
+<section class="search-section">
+    <div class="notice">
+        <strong>Trip recommendations are unavailable for this account.</strong>
+        Please contact the TravelBD administrator if you think this is a mistake.
+    </div>
+</section>
+
+{% endif %}
+
+<section class="popular-section">
+    <div class="section-heading">
+        <div>
+            <div class="eyebrow">START EXPLORING</div>
+            <h2>Destinations you might like</h2>
+            <p>Each destination is a district; its areas and attractions are listed inside.</p>
+        </div>
+    </div>
+
+    <div class="destination-grid">
+        {% for d in preview %}
+        <a class="place-card" href="{{ url_for('destination_detail',destination_id=d.destination_id) }}">
+            <div class="place-info">
+                <div class="eyebrow">{{ d.district }} · {{ d.destination_type }}</div>
+                <h3>{{ d.destination_name }}</h3>
+                <p>{{ d.attractions[:150] }}{% if d.attractions|length > 150 %}…{% endif %}</p>
+                <div class="place-meta">
+                    <span>From ৳{{ '{:,.0f}'.format(d.estimated_daily_budget_bdt|float) }}/person/day</span>
+                    <span>{{ d.accessibility_level }} access</span>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock %}

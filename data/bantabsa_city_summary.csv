@@ -1,0 +1,10 @@
+﻿location_city,city_key,review_count,mean_rating,positive_triplets,neutral_triplets,negative_triplets,source_type
+Bandarban,bandarban,111,3.900900900900901,196,15,90,"BanTABSA Bengali hotel review dataset; city-level aggregate, not hotel-specific match"
+Chattogram,chattogram,70,4.2,129,3,31,"BanTABSA Bengali hotel review dataset; city-level aggregate, not hotel-specific match"
+Cox's Bazar,cox's bazar,315,3.8666666666666667,646,59,290,"BanTABSA Bengali hotel review dataset; city-level aggregate, not hotel-specific match"
+Dhaka,dhaka,213,4.342723004694836,451,8,77,"BanTABSA Bengali hotel review dataset; city-level aggregate, not hotel-specific match"
+Kuakata,patuakhali,121,3.727272727272727,223,22,119,"BanTABSA Bengali hotel review dataset; city-level aggregate, not hotel-specific match"
+Moulvibazar,moulvibazar,128,4.1640625,307,23,89,"BanTABSA Bengali hotel review dataset; city-level aggregate, not hotel-specific match"
+Rajshahi,rajshahi,94,3.24468085106383,144,18,153,"BanTABSA Bengali hotel review dataset; city-level aggregate, not hotel-specific match"
+Rangamati,rangamati,81,4.345679012345679,162,17,36,"BanTABSA Bengali hotel review dataset; city-level aggregate, not hotel-specific match"
+Sylhet,sylhet,109,3.669724770642202,200,17,108,"BanTABSA Bengali hotel review dataset; city-level aggregate, not hotel-specific match"

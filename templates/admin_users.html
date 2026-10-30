@@ -1,0 +1,8 @@
+{% extends 'base.html' %}{% block title %}User management · TravelBD{% endblock %}{% block content %}
+<section class="page-head"><div><p class="eyebrow">Account administration</p><h1>User management</h1><p>Review registered accounts and manage the modules each normal user can access.</p></div><a class="btn secondary" href="{{ url_for('admin_dashboard') }}">← Admin dashboard</a></section>
+{% with messages=get_flashed_messages(with_categories=true) %}{% for category,message in messages %}<div class="flash {{ category }}">{{ message }}</div>{% endfor %}{% endwith %}
+<form class="list-toolbar" method="get"><input name="q" value="{{ query }}" placeholder="Search by name or email" aria-label="Search by name or email"><button class="btn primary" type="submit">Search</button>{% if query %}<a href="{{ url_for('admin_users') }}">Clear</a>{% endif %}</form>
+<div class="table-wrap"><table class="admin-table"><thead><tr><th>Name</th><th>Email</th><th>Mobile</th><th>Role</th><th>Registered</th><th>Last login</th><th>Menu rights</th></tr></thead><tbody>
+{% for u in users %}<tr><td>{{ u.full_name }}</td><td>{{ u.email }}</td><td>{{ u.phone or '—' }}</td><td><span class="source-pill">{{ u.role }}</span></td><td>{{ u.created_at or '—' }}</td><td>{{ u.last_login_at or 'Never' }}</td><td>{% if u.role == 'user' %}<a class="btn primary small" href="{{ url_for('admin_user_menu_rights',user_id=u.id) }}">Manage access</a>{% else %}<span class="muted">Full admin access</span>{% endif %}</td></tr>{% else %}<tr><td class="empty-state" colspan="7">No accounts found.</td></tr>{% endfor %}
+</tbody></table></div>
+{% endblock %}

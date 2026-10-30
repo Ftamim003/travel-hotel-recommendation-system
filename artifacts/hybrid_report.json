@@ -1,0 +1,427 @@
+{
+ "generated": "2026-10-29",
+ "interaction_data": {
+  "real": false,
+  "source": "reviews_cleaned.csv (SYNTHETIC placeholder trips; ratings column is empty)",
+  "n_rows": 10000,
+  "n_users": 3000,
+  "n_districts": 64
+ },
+ "n_cases": {
+  "V_validation": 1200,
+  "T_test": 1200,
+  "S_scenarios": 25
+ },
+ "weights": {
+  "tuned": {
+   "cbf": 0.2,
+   "cf": 0.05,
+   "popularity": 0.2,
+   "budget": 0.55
+  },
+  "best_on_grid": {
+   "cbf": 0.45,
+   "cf": 0.25,
+   "popularity": 0.2,
+   "budget": 0.1
+  },
+  "tuned_on_V_only": {
+   "cbf": 0.15,
+   "cf": 0.35,
+   "popularity": 0.05,
+   "budget": 0.45
+  },
+  "tuned_on_S_only": {
+   "cbf": 0.25,
+   "cf": 0.0,
+   "popularity": 0.25,
+   "budget": 0.5
+  },
+  "shipped_with_cf_guard": {
+   "cbf": 0.2,
+   "cf": 0.05,
+   "popularity": 0.2,
+   "budget": 0.55
+  }
+ },
+ "results_test_and_scenarios": [
+  {
+   "model": "Random",
+   "weights": null,
+   "T:hit@10": 0.156,
+   "T:ndcg@10": 0.074,
+   "T:top10_within_budget": 0.989,
+   "T:coverage": 1.0,
+   "T:ndcg_ci95": 0.011,
+   "S:hit@5": 0.32,
+   "S:ndcg@5": 0.072,
+   "S:top5_within_budget": 1.0,
+   "S:coverage": 0.875,
+   "S:ndcg_ci95": 0.046,
+   "S40:hit@5": 0.36,
+   "S40:ndcg@5": 0.082,
+   "S40:top5_within_budget": 0.808,
+   "S40:coverage": 0.875,
+   "S40:ndcg_ci95": 0.053
+  },
+  {
+   "model": "Popularity only",
+   "weights": {
+    "cbf": 0.0,
+    "cf": 0.0,
+    "popularity": 1.0,
+    "budget": 0.0
+   },
+   "T:hit@10": 0.472,
+   "T:ndcg@10": 0.26,
+   "T:top10_within_budget": 0.965,
+   "T:coverage": 0.344,
+   "T:ndcg_ci95": 0.018,
+   "S:hit@5": 0.8,
+   "S:ndcg@5": 0.312,
+   "S:top5_within_budget": 0.976,
+   "S:coverage": 0.109,
+   "S:ndcg_ci95": 0.09,
+   "S40:hit@5": 0.8,
+   "S40:ndcg@5": 0.312,
+   "S40:top5_within_budget": 0.528,
+   "S40:coverage": 0.109,
+   "S40:ndcg_ci95": 0.09
+  },
+  {
+   "model": "Content (CBF) only",
+   "weights": {
+    "cbf": 1.0,
+    "cf": 0.0,
+    "popularity": 0.0,
+    "budget": 0.0
+   },
+   "T:hit@10": 0.378,
+   "T:ndcg@10": 0.186,
+   "T:top10_within_budget": 0.983,
+   "T:coverage": 0.734,
+   "T:ndcg_ci95": 0.016,
+   "S:hit@5": 0.84,
+   "S:ndcg@5": 0.459,
+   "S:top5_within_budget": 1.0,
+   "S:coverage": 0.594,
+   "S:ndcg_ci95": 0.118,
+   "S40:hit@5": 0.84,
+   "S40:ndcg@5": 0.459,
+   "S40:top5_within_budget": 0.744,
+   "S40:coverage": 0.594,
+   "S40:ndcg_ci95": 0.118
+  },
+  {
+   "model": "CF only",
+   "weights": {
+    "cbf": 0.0,
+    "cf": 1.0,
+    "popularity": 0.0,
+    "budget": 0.0
+   },
+   "T:hit@10": 0.583,
+   "T:ndcg@10": 0.334,
+   "T:top10_within_budget": 0.971,
+   "T:coverage": 0.938,
+   "T:ndcg_ci95": 0.02,
+   "S:hit@5": 0.76,
+   "S:ndcg@5": 0.286,
+   "S:top5_within_budget": 0.984,
+   "S:coverage": 0.125,
+   "S:ndcg_ci95": 0.089,
+   "S40:hit@5": 0.76,
+   "S40:ndcg@5": 0.294,
+   "S40:top5_within_budget": 0.504,
+   "S40:coverage": 0.109,
+   "S40:ndcg_ci95": 0.093
+  },
+  {
+   "model": "Budget only",
+   "weights": {
+    "cbf": 0.0,
+    "cf": 0.0,
+    "popularity": 0.0,
+    "budget": 1.0
+   },
+   "T:hit@10": 0.3,
+   "T:ndcg@10": 0.142,
+   "T:top10_within_budget": 1.0,
+   "T:coverage": 0.453,
+   "T:ndcg_ci95": 0.014,
+   "S:hit@5": 0.28,
+   "S:ndcg@5": 0.073,
+   "S:top5_within_budget": 1.0,
+   "S:coverage": 0.172,
+   "S:ndcg_ci95": 0.055,
+   "S40:hit@5": 0.28,
+   "S40:ndcg@5": 0.085,
+   "S40:top5_within_budget": 0.984,
+   "S40:coverage": 0.359,
+   "S40:ndcg_ci95": 0.064
+  },
+  {
+   "model": "Equal weights",
+   "weights": {
+    "cbf": 0.25,
+    "cf": 0.25,
+    "popularity": 0.25,
+    "budget": 0.25
+   },
+   "T:hit@10": 0.557,
+   "T:ndcg@10": 0.308,
+   "T:top10_within_budget": 0.987,
+   "T:coverage": 0.969,
+   "T:ndcg_ci95": 0.019,
+   "S:hit@5": 0.88,
+   "S:ndcg@5": 0.448,
+   "S:top5_within_budget": 1.0,
+   "S:coverage": 0.25,
+   "S:ndcg_ci95": 0.115,
+   "S40:hit@5": 0.72,
+   "S40:ndcg@5": 0.35,
+   "S40:top5_within_budget": 0.88,
+   "S40:coverage": 0.484,
+   "S40:ndcg_ci95": 0.124
+  },
+  {
+   "model": "Hand-set prior (chosen while looking at S)",
+   "weights": {
+    "cbf": 0.5,
+    "cf": 0.1,
+    "popularity": 0.15,
+    "budget": 0.25
+   },
+   "T:hit@10": 0.527,
+   "T:ndcg@10": 0.263,
+   "T:top10_within_budget": 0.989,
+   "T:coverage": 0.953,
+   "T:ndcg_ci95": 0.017,
+   "S:hit@5": 0.92,
+   "S:ndcg@5": 0.539,
+   "S:top5_within_budget": 1.0,
+   "S:coverage": 0.547,
+   "S:ndcg_ci95": 0.115,
+   "S40:hit@5": 0.92,
+   "S40:ndcg@5": 0.476,
+   "S40:top5_within_budget": 0.904,
+   "S40:coverage": 0.609,
+   "S40:ndcg_ci95": 0.117
+  },
+  {
+   "model": "Tuned weights (V+S, 1-SE)",
+   "weights": {
+    "cbf": 0.2,
+    "cf": 0.05,
+    "popularity": 0.2,
+    "budget": 0.55
+   },
+   "T:hit@10": 0.514,
+   "T:ndcg@10": 0.269,
+   "T:top10_within_budget": 0.997,
+   "T:coverage": 0.797,
+   "T:ndcg_ci95": 0.018,
+   "S:hit@5": 0.88,
+   "S:ndcg@5": 0.524,
+   "S:top5_within_budget": 1.0,
+   "S:coverage": 0.5,
+   "S:ndcg_ci95": 0.113,
+   "S40:hit@5": 0.84,
+   "S40:ndcg@5": 0.436,
+   "S40:top5_within_budget": 0.984,
+   "S40:coverage": 0.609,
+   "S40:ndcg_ci95": 0.121
+  },
+  {
+   "model": "SHIPPED = tuned + CF evidence guard",
+   "weights": {
+    "cbf": 0.2,
+    "cf": 0.05,
+    "popularity": 0.2,
+    "budget": 0.55
+   },
+   "T:hit@10": 0.514,
+   "T:ndcg@10": 0.269,
+   "T:top10_within_budget": 0.997,
+   "T:coverage": 0.797,
+   "T:ndcg_ci95": 0.018,
+   "S:hit@5": 0.88,
+   "S:ndcg@5": 0.524,
+   "S:top5_within_budget": 1.0,
+   "S:coverage": 0.5,
+   "S:ndcg_ci95": 0.113,
+   "S40:hit@5": 0.84,
+   "S40:ndcg@5": 0.436,
+   "S40:top5_within_budget": 0.984,
+   "S40:coverage": 0.609,
+   "S40:ndcg_ci95": 0.121
+  },
+  {
+   "model": "Shipped without cbf",
+   "weights": {
+    "cbf": 0.0,
+    "cf": 0.062,
+    "popularity": 0.25,
+    "budget": 0.688
+   },
+   "T:hit@10": 0.507,
+   "T:ndcg@10": 0.295,
+   "T:top10_within_budget": 0.998,
+   "T:coverage": 0.703,
+   "T:ndcg_ci95": 0.019,
+   "S:hit@5": 0.8,
+   "S:ndcg@5": 0.286,
+   "S:top5_within_budget": 1.0,
+   "S:coverage": 0.141,
+   "S:ndcg_ci95": 0.081,
+   "S40:hit@5": 0.72,
+   "S40:ndcg@5": 0.292,
+   "S40:top5_within_budget": 0.96,
+   "S40:coverage": 0.359,
+   "S40:ndcg_ci95": 0.103
+  },
+  {
+   "model": "Shipped without cf",
+   "weights": {
+    "cbf": 0.211,
+    "cf": 0.0,
+    "popularity": 0.211,
+    "budget": 0.579
+   },
+   "T:hit@10": 0.487,
+   "T:ndcg@10": 0.242,
+   "T:top10_within_budget": 0.998,
+   "T:coverage": 0.688,
+   "T:ndcg_ci95": 0.017,
+   "S:hit@5": 0.88,
+   "S:ndcg@5": 0.55,
+   "S:top5_within_budget": 1.0,
+   "S:coverage": 0.547,
+   "S:ndcg_ci95": 0.117,
+   "S40:hit@5": 0.8,
+   "S40:ndcg@5": 0.431,
+   "S40:top5_within_budget": 0.984,
+   "S40:coverage": 0.641,
+   "S40:ndcg_ci95": 0.115
+  },
+  {
+   "model": "Shipped without popularity",
+   "weights": {
+    "cbf": 0.25,
+    "cf": 0.062,
+    "popularity": 0.0,
+    "budget": 0.688
+   },
+   "T:hit@10": 0.507,
+   "T:ndcg@10": 0.254,
+   "T:top10_within_budget": 0.998,
+   "T:coverage": 1.0,
+   "T:ndcg_ci95": 0.017,
+   "S:hit@5": 0.88,
+   "S:ndcg@5": 0.489,
+   "S:top5_within_budget": 1.0,
+   "S:coverage": 0.562,
+   "S:ndcg_ci95": 0.12,
+   "S40:hit@5": 0.8,
+   "S40:ndcg@5": 0.421,
+   "S40:top5_within_budget": 0.984,
+   "S40:coverage": 0.641,
+   "S40:ndcg_ci95": 0.118
+  },
+  {
+   "model": "Shipped without budget",
+   "weights": {
+    "cbf": 0.444,
+    "cf": 0.111,
+    "popularity": 0.444,
+    "budget": 0.0
+   },
+   "T:hit@10": 0.544,
+   "T:ndcg@10": 0.279,
+   "T:top10_within_budget": 0.969,
+   "T:coverage": 0.672,
+   "T:ndcg_ci95": 0.017,
+   "S:hit@5": 0.88,
+   "S:ndcg@5": 0.542,
+   "S:top5_within_budget": 1.0,
+   "S:coverage": 0.5,
+   "S:ndcg_ci95": 0.115,
+   "S40:hit@5": 0.88,
+   "S40:ndcg@5": 0.544,
+   "S40:top5_within_budget": 0.688,
+   "S40:coverage": 0.484,
+   "S40:ndcg_ci95": 0.119
+  }
+ ],
+ "scenario_cv": [
+  {
+   "model": "Hand-set prior (chosen while looking at S)",
+   "hit@5": 0.92,
+   "recall@5": 0.53,
+   "ndcg@5": 0.539,
+   "mrr": 0.728,
+   "top5_within_budget": 1.0,
+   "coverage": 0.262,
+   "ndcg_ci95": 0.25
+  },
+  {
+   "model": "Tuned on V + scenarios (CV)",
+   "hit@5": 0.86,
+   "recall@5": 0.478,
+   "ndcg@5": 0.515,
+   "mrr": 0.77,
+   "top5_within_budget": 1.0,
+   "coverage": 0.223,
+   "ndcg_ci95": 0.248
+  },
+  {
+   "model": "Tuned on scenarios only (CV)",
+   "hit@5": 0.88,
+   "recall@5": 0.546,
+   "ndcg@5": 0.55,
+   "mrr": 0.747,
+   "top5_within_budget": 1.0,
+   "coverage": 0.248,
+   "ndcg_ci95": 0.256
+  },
+  {
+   "model": "Popularity only",
+   "hit@5": 0.8,
+   "recall@5": 0.31,
+   "ndcg@5": 0.312,
+   "mrr": 0.545,
+   "top5_within_budget": 0.976,
+   "coverage": 0.109,
+   "ndcg_ci95": 0.198
+  },
+  {
+   "model": "Content (CBF) only",
+   "hit@5": 0.84,
+   "recall@5": 0.44,
+   "ndcg@5": 0.459,
+   "mrr": 0.681,
+   "top5_within_budget": 1.0,
+   "coverage": 0.3,
+   "ndcg_ci95": 0.254
+  }
+ ],
+ "scenario_cv_fold_weights": {
+  "mean": {
+   "cbf": 0.213,
+   "cf": 0.043,
+   "popularity": 0.203,
+   "budget": 0.543
+  },
+  "std": {
+   "cbf": 0.022,
+   "cf": 0.033,
+   "popularity": 0.051,
+   "budget": 0.033
+  }
+ },
+ "notes": [
+  "T hits/NDCG are for an interaction set that is SYNTHETIC unless interaction_data.real is true; do not present them as evidence about real travellers.",
+  "S is 25 hand-written scenarios; the prior weights were set while looking at it, so the prior is optimistic there. The CV rows tune without the held-out scenarios.",
+  "Weights were tuned on V + S. T was never used for tuning or selection. S numbers for the final weights are in-sample; use the CV table for an honest estimate."
+ ]
+}
